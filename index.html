@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plan de Estudios Interactivo – Lic. en Sistemas de Información</title>
+  <meta name="description" content="Plan de estudios interactivo donde las materias se desbloquean según sus correlativas.">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Plan de Estudios – Lic. en Sistemas de Información</h1>
+    <div class="toolbar">
+      <button id="btn-reset" class="btn">Reiniciar progreso</button>
+      <button id="btn-export" class="btn">Exportar progreso</button>
+      <label class="btn file">
+        Importar progreso JSON
+        <input id="file-import" type="file" accept="application/json" />
+      </label>
+      <input id="search" type="search" placeholder="Buscar materia..." />
+    </div>
+  </header>
+
+  <main>
+    <div class="legend">
+      <span class="pill pill-open">Disponible</span>
+      <span class="pill pill-locked">Bloqueada</span>
+      <span class="pill pill-done">Aprobada</span>
+    </div>
+
+    <!-- Contenedor del diagrama -->
+    <div id="canvas-wrapper">
+      <svg id="edges" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+      <section id="grid" aria-label="Diagrama del plan de estudios"></section>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>
+      Tip: Hacé clic en una materia para marcarla como <strong>aprobada</strong> (clic de nuevo para desmarcar).
+      El estado se guarda en tu navegador (localStorage).
+    </p>
+    <p>
+      Diseño en modo oscuro, acento verde azulado. Listo para GitHub Pages.
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

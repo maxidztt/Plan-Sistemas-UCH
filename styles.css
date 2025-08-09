@@ -1,0 +1,134 @@
+*{box-sizing:border-box}
+:root{
+  --bg:#0b0f12;
+  --panel:#11161b;
+  --panel-2:#0e1419;
+  --text:#e6f0f3;
+  --muted:#94a3b8;
+  --teal:#1db8a6;        /* verde azulado principal */
+  --teal-2:#139686;      /* hover/bordes */
+  --done:#2bd07c;        /* aprobado */
+  --locked:#39424c;
+  --edge:#6fdede;        /* color de flechas */
+  --edge-locked:#39424c; /* flecha hacia bloqueadas */
+  --shadow: 0 6px 24px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.02);
+  --radius: 16px;
+}
+
+html,body{height:100%}
+body{
+  margin:0;
+  background:radial-gradient(1200px 800px at 70% -10%, #11232a 0%, #0c1317 45%, var(--bg) 100%);
+  color:var(--text);
+  font: 15px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+.app-header{
+  position:sticky; top:0; z-index:20;
+  background: linear-gradient(#0f161b, #0b1115);
+  border-bottom:1px solid #0f1f24;
+  padding:14px 16px;
+}
+.app-header h1{
+  margin:0 0 8px;
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--text);
+}
+.toolbar{
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+}
+.btn{
+  background:var(--panel);
+  border:1px solid #1a2a30;
+  color:var(--text);
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow: var(--shadow);
+  transition: transform .05s ease, border-color .2s ease, background .2s ease;
+}
+.btn:hover{ transform: translateY(-1px); border-color:#24424a; }
+.btn:active{ transform: translateY(0px) scale(.99); }
+.btn.file{ position:relative; overflow:hidden; }
+.btn.file input{ position:absolute; inset:0; opacity:0; cursor:pointer; }
+
+#search{
+  margin-left:auto;
+  background:var(--panel);
+  border:1px solid #1a2a30;
+  color:var(--text);
+  padding:8px 12px;
+  border-radius:10px;
+  min-width:220px;
+  box-shadow: var(--shadow);
+}
+
+.legend{ display:flex; gap:10px; padding:12px 16px; align-items:center; }
+.pill{
+  display:inline-flex; gap:6px; align-items:center;
+  border-radius:999px; padding:6px 10px; border:1px solid #234a4a;
+  background:var(--panel-2);
+  color:var(--text);
+  font-size:13px;
+}
+.pill::before{ content:""; width:10px; height:10px; border-radius:50%; display:inline-block; }
+.pill-open::before{ background:var(--teal); }
+.pill-locked::before{ background:var(--locked); }
+.pill-done::before{ background:var(--done); }
+
+#canvas-wrapper{
+  position:relative;
+  padding:16px;
+  min-height:70vh;
+}
+#edges{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  pointer-events:none;
+}
+#grid{
+  display:grid;
+  gap:14px;
+  /* 10 columnas: 5 años x 2 semestres */
+  grid-template-columns: repeat(10, minmax(220px, 1fr));
+  align-items:start;
+}
+.col-title{
+  grid-column: span 1;
+  color:var(--muted);
+  font-weight:600;
+  margin: 10px 0 2px 4px;
+}
+.card{
+  background:linear-gradient(180deg, #121a20 0%, #0e1419 100%);
+  border:1px solid #193038;
+  border-radius: var(--radius);
+  padding:12px;
+  box-shadow: var(--shadow);
+  position:relative;
+  transition: border-color .2s ease, transform .06s ease;
+}
+.card:hover{ border-color:#27565a; transform: translateY(-1px); }
+.card.locked{ border-color:#1a2228; opacity:.75; }
+.card.done{ border-color:#1f4a41; background:linear-gradient(180deg, #15231e 0%, #0b1613 100%); }
+.card .code{ font-weight:700; color:var(--teal); }
+.card .name{ font-size:15px; margin:6px 0 4px; }
+.meta{ display:flex; gap:8px; flex-wrap:wrap; color:var(--muted); font-size:12px; }
+.badge{ background:#0b1b1f; border:1px solid #14343a; color:#9adad3; padding:2px 6px; border-radius:999px; }
+.prereq{ color:#a7bac7; }
+.actions{ margin-top:8px; display:flex; gap:8px; }
+.small{ font-size:12px; color:var(--muted); }
+
+/* Conectores (flechas) */
+.marker-teal{ stop-color:var(--edge); }
+.marker-locked{ stop-color:var(--edge-locked); }
+
+@media (max-width: 1200px){
+  #grid{ grid-template-columns: repeat(5, minmax(220px, 1fr)); }
+  .col-title{ grid-column: span 5; }
+}
+@media (max-width: 700px){
+  #grid{ grid-template-columns: repeat(2, minmax(210px, 1fr)); }
+  .col-title{ grid-column: span 2; }
+  .legend{ flex-wrap:wrap; }
+}
