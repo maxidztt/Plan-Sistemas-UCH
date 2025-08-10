@@ -2,9 +2,40 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Generador de plan de estudios</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Estilos adicionales para la página del generador */
+    .subject-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 1em;
+    }
+    .subject-form input,
+    .subject-form button {
+      min-width: 120px;
+    }
+    .color-settings {
+      margin: 1em 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+    .color-settings label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .card .date {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+  </style>
 </head>
 <body>
   <header class="app-header">
@@ -15,17 +46,25 @@
   </header>
   <main>
     <form id="subject-form" class="subject-form">
-      <input type="number" id="code" placeholder="Código" required/>
-      <input type="text" id="name" placeholder="Nombre" required/>
-      <input type="number" id="year" placeholder="Año (1-5)" min="1" max="5" required/>
-      <input type="number" id="semester" placeholder="Semestre (1-2)" min="1" max="2" required/>
-      <input type="text" id="prereq" placeholder="Correlativas (códigos separados por coma)"/>
+      <input type="number" id="code" placeholder="Código" min="1" required />
+      <input type="text" id="name" placeholder="Nombre" required />
+      <input type="number" id="year" placeholder="Año (1-5)" min="1" max="5" required />
+      <input type="number" id="semester" placeholder="Semestre (1-2)" min="1" max="2" required />
+      <input type="text" id="prereq" placeholder="Correlativas (códigos separados por coma)" />
+      <input type="date" id="date" placeholder="Fecha" />
       <button type="submit" class="btn">Agregar materia</button>
     </form>
     <div class="legend">
       <span class="pill pill-open">Disponible</span>
       <span class="pill pill-locked">Bloqueada</span>
       <span class="pill pill-done">Aprobada</span>
+    </div>
+    <div class="color-settings">
+      <label>Disponible <input type="color" id="color-teal" data-var="teal" /></label>
+      <label>Hover <input type="color" id="color-teal2" data-var="teal2" /></label>
+      <label>Aprobada <input type="color" id="color-done" data-var="done" /></label>
+      <label>Bloqueada <input type="color" id="color-locked" data-var="locked" /></label>
+      <label>Tarjeta <input type="color" id="color-card" data-var="card" /></label>
     </div>
     <div class="canvas-wrapper">
       <svg id="edges" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
