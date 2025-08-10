@@ -1,4 +1,7 @@
-*{box-sizing:border-box}
+*.card.locked
+
+
+{box-sizing:border-box}
 :root{
   --bg:#0b0f12;
   --panel:#11161b;
@@ -108,10 +111,13 @@ body{
   position:relative;
   transition: border-color .2s ease, transform .06s ease;
 }
-.card:hover{ border-color:#27565a; transform: translateY(-1px); }
-.card.locked{ border-color:#1a2228; opacity:.75; }
-.card.done{ border-color:#1f4a41; background:linear-gradient(180deg, #15231e 0%, #0b1613 100%); }
-.card .code{ font-weight:700; color:var(--teal); }
+.card:hover{ border-color:#27656a; transform: translateY(-1px); }
+.card.locked {
+  background: var(--locked);
+  border-color: var(--locked);
+  color: var(--muted);
+  opacity: 0.6;
+}
 .card .name{ font-size:15px; margin:6px 0 4px; }
 .meta{ display:flex; gap:8px; flex-wrap:wrap; color:var(--muted); font-size:12px; }
 .badge{ background:#0b1b1f; border:1px solid #14343a; color:#9adad3; padding:2px 6px; border-radius:999px; }
