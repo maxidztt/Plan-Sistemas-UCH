@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generador de plan de estudios</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="app-header">
+    <h1>Generador de plan de estudios</h1>
+    <div class="toolbar">
+      <a href="index.html" class="btn">Volver al plan oficial</a>
+    </div>
+  </header>
+  <main>
+    <form id="subject-form" class="subject-form">
+      <input type="number" id="code" placeholder="Código" required/>
+      <input type="text" id="name" placeholder="Nombre" required/>
+      <input type="number" id="year" placeholder="Año (1-5)" min="1" max="5" required/>
+      <input type="number" id="semester" placeholder="Semestre (1-2)" min="1" max="2" required/>
+      <input type="text" id="prereq" placeholder="Correlativas (códigos separados por coma)"/>
+      <button type="submit" class="btn">Agregar materia</button>
+    </form>
+    <div class="legend">
+      <span class="pill pill-open">Disponible</span>
+      <span class="pill pill-locked">Bloqueada</span>
+      <span class="pill pill-done">Aprobada</span>
+    </div>
+    <div class="canvas-wrapper">
+      <svg id="edges" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+      <section id="grid"></section>
+    </div>
+  </main>
+  <footer class="app-footer">
+    <p>Tip: Haz clic en una materia para marcarla como <strong>aprobada</strong> (clic de nuevo para desmarcar).</p>
+  </footer>
+  <script src="generate.js"></script>
+</body>
+</html>
