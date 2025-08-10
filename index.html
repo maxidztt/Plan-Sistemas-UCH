@@ -17,34 +17,26 @@
         Importar progreso JSON
         <input id="file-import" type="file" accept="application/json" />
       </label>
+      <a href="generate.html" class="btn">Generar plan</a>
       <input id="search" type="search" placeholder="Buscar materia..." />
     </div>
   </header>
-
   <main>
     <div class="legend">
       <span class="pill pill-open">Disponible</span>
       <span class="pill pill-locked">Bloqueada</span>
       <span class="pill pill-done">Aprobada</span>
     </div>
-
     <!-- Contenedor del diagrama -->
     <div id="canvas-wrapper">
       <svg id="edges" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
       <section id="grid" aria-label="Diagrama del plan de estudios"></section>
     </div>
   </main>
-
   <footer class="app-footer">
-    <p>
-      Tip: Hacé clic en una materia para marcarla como <strong>aprobada</strong> (clic de nuevo para desmarcar).
-      El estado se guarda en tu navegador (localStorage).
-    </p>
-    <p>
-      Diseño en modo oscuro, acento verde azulado. Listo para GitHub Pages.
-    </p>
+    <p>Tip: Hacé clic en una materia para marcarla como <strong>aprobada</strong> (clic de nuevo para desmarcar). El estado se guarda en tu navegador (localStorage).</p>
+    <p>Diseño en modo oscuro, acento verde azulado. Listo para GitHub Pages.</p>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>
