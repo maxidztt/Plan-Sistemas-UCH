@@ -69,6 +69,7 @@
     {code:44, name:"Tesina de Licenciatura",                year:5, semester:2, order:1, prereq:"ALL"} // requiere todas
   ];
 
+  
   // ====== Utilidades ======
   const key = "plan-estudios-progress-v1";
   const $ = (q,ctx=document)=>ctx.querySelector(q);
@@ -103,6 +104,7 @@
 
   // ====== Render ======
   const grid = document.getElementById("grid");
+
   const edgesSvg = document.getElementById("edges");
 
   // Col titles
@@ -136,10 +138,13 @@
     const card = document.createElement("article");
     card.className = "card";
     card.dataset.code = node.code;
+
     card.dataset.col = colIndexOf(node);
     card.innerHTML = `
       <div class="code">#${node.code}</div>
+
       <div class="name">${node.name}</div>
+
       <div class="meta">
         <span class="badge">Año ${node.year}</span>
         <span class="badge">${node.semester===1?"1° Sem":"2° Sem"}</span>
@@ -175,7 +180,8 @@
   function layoutGrid(){
     // Colocar cada card dentro de su columna (grid-auto-flow row; usamos order via CSS grid-row)
     const columns = 10;
-    const colHeights = Array.from({length:columns}, ()=>0);
+    con
+      st colHeights = Array.from({length:columns}, ()=>0);
     // Seed positions in DOM order by col then internal order
     const all = PLAN.slice().sort((a,b)=>{
       const ca = colIndexOf(a), cb = colIndexOf(b);
@@ -277,6 +283,7 @@
         const data = JSON.parse(String(reader.result||"{}"));
         localStorage.setItem(key, JSON.stringify(data));
         Object.keys(data).length && alert("Progreso importado correctamente.");
+   
         applyStatus(); drawEdges();
       }catch(e){
         alert("No se pudo importar el JSON.");
@@ -299,3 +306,4 @@
   setTimeout(drawEdges, 50);
   window.addEventListener("resize", onResize);
 })();
+// ====== Datos ======
